@@ -21,7 +21,6 @@ class OrderItemSchema extends Schema {
         .references('id')
         .inTable('orders')
         .onDelete('castate');
-      table.timestamps();
     });
   }
 

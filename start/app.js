@@ -37,7 +37,7 @@ const aceProviders = [
   'adonis-acl/providers/CommandsProvider',
   'adonis-bumblebee/providers/CommandsProvider'
 ]
-]
+
 
 /*
 |--------------------------------------------------------------------------

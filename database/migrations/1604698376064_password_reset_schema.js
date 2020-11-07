@@ -17,7 +17,7 @@ class PasswordResetSchema extends Schema {
         .foreign('email')
         .references('email')
         .inTable('users')
-        .onDelete('castate');
+        .onDelete('cascade');
       table.timestamps();
     });
   }

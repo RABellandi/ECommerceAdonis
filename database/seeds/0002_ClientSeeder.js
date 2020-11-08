@@ -18,15 +18,15 @@ const User = use('App/Models/User');
 class ClientSeeder {
   async run() {
     const role = await Role.findBy('slug', 'client');
-    const clients = Factory.model('App/Models/User').createMany(25);
+    const clients = await Factory.model('App/Models/User').createMany(25);
     await Promise.all(
       clients.map(async client => {
         await client.roles().attach([role.id]);
       })
     );
     const user = await User.create({
-      name: 'Thauan',
-      surname: 'Santos',
+      name: 'Rafael',
+      surname: 'Bellandi',
       email: 'rafael@e-aud.com.br',
       password: 'secret',
     });

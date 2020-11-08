@@ -1,5 +1,3 @@
-import Product from './Product';
-
 'use strict'
 
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */

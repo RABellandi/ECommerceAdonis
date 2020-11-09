@@ -38,11 +38,11 @@ class ImageController {
   async store({ request, response }) {
     try {
       //one upload
+      let images = [];
       const fileJar = request.file('images', {
         types: ['images'],
         size: '2mb',
       });
-      let images = [];
       if (!fileJar.files) {
         const file = await manage_single_upload(fileJar);
         if (file.moved()) {
@@ -59,11 +59,11 @@ class ImageController {
           message: 'Não foi possível processar a imagem no momento!',
         });
       }
-
+      //
       //multiples uploads
       let files = await manage_multiple_uploads(fileJar);
       await Promise.all(
-        file.successes.map(async file => {
+        files.successes.map(async file => {
           const image = await Image.create({
             path: file.fileName,
             size: file.size,
@@ -73,9 +73,12 @@ class ImageController {
           images.push(image);
         })
       );
+      //return multiples uploads
       return response
         .status(201)
         .send({ successes: images, errors: file.errors });
+      //
+      //catch whatever errors
     } catch (e) {
       return response.status(400).send({
         message: 'Não foi possível processar a imagem!',

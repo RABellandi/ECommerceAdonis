@@ -33,10 +33,8 @@ class AuthController {
     if (!refresh_token) {
       refresh_token = request.header('refresh_token');
     }
-    const user = await auth
-      .newRefreshToken()
-      .generateForRefreshToken(refresh_token);
-    return reponse.send({ data: user });
+    const user = await auth.newRefreshToken().generateForRefreshToken(refresh_token);
+    return response.send({ data: user });
   }
 
   async logout({ request, response, auth }) {
@@ -46,8 +44,8 @@ class AuthController {
     }
     await auth
       .authenticator('jwt')
-      .revokeToken([refresh_token], true);
-    return reponse.status(204).send({})
+      .revokeTokens([refresh_token], true);
+    return response.status(204).send({})
   }
 
   async forgot({ request, response }) {}

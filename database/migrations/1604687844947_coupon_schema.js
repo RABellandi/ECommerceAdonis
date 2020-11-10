@@ -11,7 +11,7 @@ class CouponSchema extends Schema {
       table.datetime('valid_from');
       table.datetime('valid_until');
       table.integer('quantity').defaultTo(1);
-      table.enu('can_use_for', ['product', 'cliente', 'product_client', 'all']);
+      table.enu('can_use_for', ['product', 'client', 'product_client', 'all']);
       table.enu('type', ['free', 'percent', 'currency']).defaultTo('currency');
       table.boolean('recursive').defaultTo(false)
       table.timestamps();
